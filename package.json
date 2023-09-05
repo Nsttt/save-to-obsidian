@@ -1,0 +1,18 @@
+{
+  "name": "save-to-obsidian",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "dev": "tsup  src/* --watch --dts-resolve --format esm --minify --clean --dts --sourcemap --target es2019 --out-dir dist --publicDir public",
+    "build": "tsup src/* --dts-resolve --format esm --minify --clean --dts --sourcemap --target es2019 --out-dir dist --publicDir public"
+  },
+  "keywords": [],
+  "author": "Néstor López",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "@types/chrome": "^0.0.245",
+    "tsup": "^7.2.0"
+  }
+}
