@@ -10,8 +10,21 @@
     "48": "/assets/icon-48.png",
     "128": "/assets/icon-128.png"
   },
-  "permissions": ["activeTab", "storage", "contextMenus", "downloads"],
+  "permissions": [
+    "activeTab",
+    "storage",
+    "contextMenus",
+    "downloads",
+    "tabs",
+    "scripting"
+  ],
   "background": {
-    "service_worker": "service_worker.js"
-  }
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
 }
