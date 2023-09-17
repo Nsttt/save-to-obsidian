@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "tsup  src/* --watch --dts-resolve --format esm --minify --clean --dts --sourcemap --target es2019 --out-dir dist --publicDir public --noExternal @mozilla/readability,turndown",
+    "dev": "tsup --watch --config tsup.config.ts",
     "build": "tsup --config tsup.config.ts"
   },
   "keywords": [],
