@@ -1,7 +1,7 @@
 import { Readability } from "@mozilla/readability";
 import TurndownService from "turndown";
 
-document.addEventListener("click", async function () {
+function createNote() {
   /* Optional vault name */
   const vault = "";
 
@@ -139,4 +139,10 @@ document.addEventListener("click", async function () {
     "&content=" +
     encodeURIComponent(fileContent) +
     vaultName;
+}
+
+chrome.runtime.onMessage.addListener(function (request) {
+  if (request.message === "clicked_context_menu") {
+    createNote();
+  }
 });
