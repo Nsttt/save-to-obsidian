@@ -32,23 +32,30 @@ A browser extension that enables users to effortlessly scrape the current websit
    ```
 
 3. Since the project uses `pnpm`, install the required dependencies using:
+
    ```bash
    pnpm install
    ```
 
+4. Bundle the files into the dist directory:
+   ```bash
+   pnpm build
+   ```
+
 ### Usage
 
-1. Load the extension into your browser.
-2. Navigate to the desired webpage.
-3. Use the context menu to activate `Save to Obsidian`.
-4. The content of the website will be scraped, converted to markdown, and saved to your Obsidian vault.
+1. Enable developer mode in your browser at `chrome://extensions`.
+2. Load the extension into your browser by pressing the `load unpacked`.
+3. Navigate to the desired webpage.
+4. Use the context menu to activate `Save to Obsidian`.
+5. The content of the website will be scraped, converted to markdown, and saved to your Obsidian vault.
 
 ### Development
 
 This project is bundled with `tsup` for a smooth TypeScript development experience. To run a development build, use:
 
 ```bash
-pnpm run dev
+pnpm dev
 ```
 
 ## Contributing
