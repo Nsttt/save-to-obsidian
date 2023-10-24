@@ -38,7 +38,8 @@ function getSelectionHtml(): string {
 
 function getFileName(fileName: string): string {
   const isWindows = window.navigator.userAgent.toLowerCase().includes("win");
-  const invalidChars = isWindows ? /[:/\\?%*|"<>]/g : /[:/\\]/g;
+  const invalidChars = isWindows ? /[:/\\?%*|"<>]/g : /[:/\\|]/g;
+
   return fileName.replace(":", "").replace(invalidChars, "-");
 }
 
@@ -82,7 +83,6 @@ author:    ${byline}
 title:     [${title}]
 source:    ${document.URL}
 clipped:   ${today}
-published: 
 tags:      [${tags}]
 ---
 
