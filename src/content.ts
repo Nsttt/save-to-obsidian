@@ -41,15 +41,18 @@ function convertDate(date: Date) {
 }
 
 function createNote() {
-  /* Optional vault name */
-  const vault = "";
-  const vaultName = vault ? "&vault=" + encodeURIComponent(`${vault}`) : "";
+  let DEFAULT_VAULT = "";
+  let DEFAULT_FOLDER = "Encounters/";
+  let DEFAULT_TAGS = "clippings";
 
-  /* Optional folder name such as "Clippings/" */
-  const folder = "Encounters/";
+  chrome.storage.sync.get(["defaultFolder", "defaultTags"], (data) => {
+    if (data.defaultFolder) DEFAULT_FOLDER = data.defaultFolder;
+    if (data.defaultTags) DEFAULT_TAGS = data.defaultTags;
+  });
 
-  /* Optional tags  */
-  let tags = "clippings";
+  const vaultName = DEFAULT_VAULT
+    ? "&vault=" + encodeURIComponent(`${DEFAULT_VAULT}`)
+    : "";
 
   const selection = getSelectionHtml();
   const today = convertDate(new Date());
@@ -68,7 +71,7 @@ function createNote() {
       const keywords = content.split(",");
       keywords.forEach((keyword) => {
         const tag = " " + keyword.split(" ").join("");
-        tags += tag;
+        DEFAULT_TAGS += tag;
       });
     }
   }
@@ -97,9 +100,6 @@ function createNote() {
     "author:    " +
     readable.byline +
     "\n" +
-    "title:     [" +
-    readable.title +
-    "]\n" +
     "source:    " +
     document.URL +
     "\n" +
@@ -107,7 +107,7 @@ function createNote() {
     today +
     "\n" +
     "tags:      [" +
-    tags +
+    DEFAULT_TAGS +
     "]\n" +
     "---\n\n" +
     markdownBody;
@@ -115,7 +115,7 @@ function createNote() {
   document.location.href =
     "obsidian://new?" +
     "file=" +
-    encodeURIComponent(folder + fileName) +
+    encodeURIComponent(DEFAULT_FOLDER + fileName) +
     "&content=" +
     encodeURIComponent(fileContent) +
     vaultName;
