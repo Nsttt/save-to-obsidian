@@ -69,18 +69,8 @@ function createNote() {
   }
 
   const fileName = getFileName(title);
-
-  if (selection) {
-    var markdownify = selection;
-  } else {
-    var markdownify = content;
-  }
-
-  if (vault) {
-    var vaultName = "&vault=" + encodeURIComponent(`${vault}`);
-  } else {
-    var vaultName = "";
-  }
+  const markdownify = selection ? selection : content;
+  const vaultName = vault ? "&vault=" + encodeURIComponent(`${vault}`) : "";
 
   const turndownService = new TurndownService({
     headingStyle: "atx",
@@ -91,14 +81,14 @@ function createNote() {
   });
   const markdownBody = turndownService.turndown(markdownify);
 
-  var date = new Date();
+  let date = new Date();
 
   function convertDate(date: Date) {
-    var yyyy = date.getFullYear().toString();
-    var mm = (date.getMonth() + 1).toString();
-    var dd = date.getDate().toString();
-    var mmChars = mm.split("");
-    var ddChars = dd.split("");
+    let yyyy = date.getFullYear().toString();
+    let mm = (date.getMonth() + 1).toString();
+    let dd = date.getDate().toString();
+    let mmChars = mm.split("");
+    let ddChars = dd.split("");
     return (
       yyyy +
       "-" +
@@ -125,7 +115,6 @@ function createNote() {
     "clipped:   " +
     today +
     "\n" +
-    "published: \n\n" +
     "tags:      [" +
     tags +
     "]\n" +
