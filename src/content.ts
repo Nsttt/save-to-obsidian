@@ -4,9 +4,11 @@ import TurndownService from "turndown";
 function getFileName(title: string) {
   const isWindows = window.navigator.userAgent.toLowerCase().includes("win");
 
-  const fileName = isWindows
-    ? title.replace(":", "").replace(/[/\\?%*|"<>]/g, "-")
-    : title.replace(":", "").replace(/\//g, "-").replace(/\\/g, "-");
+  // Windows: \ / : * ? " < > |
+  // Other OS: \ / :
+  const invalidChars = isWindows ? /[\\/:*?"<>|]/g : /[\\/:]/g;
+
+  const fileName = title.replace(invalidChars, "-");
 
   return fileName;
 }
