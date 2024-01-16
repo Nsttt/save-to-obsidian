@@ -1,14 +1,22 @@
 import { Readability } from "@mozilla/readability";
 import TurndownService from "turndown";
 
+const DEFAULT_VAULT = "";
+const DEFAULT_FOLDER = "Encounters/";
+const DEFAULT_TAGS = ["clippings"];
+
 function getFileName(title: string) {
   const isWindows = window.navigator.userAgent.toLowerCase().includes("win");
 
   // Windows: \ / : * ? " < > |
   // Other OS: \ / :
   const invalidChars = isWindows ? /[\\/:*?"<>|]/g : /[\\/:]/g;
-
   const fileName = title.replace(invalidChars, "-");
+
+  // Limit the file name to 100 characters
+  if (fileName.length > 100) {
+    return fileName.substring(0, 100);
+  }
 
   return fileName;
 }
@@ -42,15 +50,11 @@ function convertDate(date: Date) {
   );
 }
 
-function createNote() {
-  let DEFAULT_VAULT = "";
-  let DEFAULT_FOLDER = "Encounters/";
-  let DEFAULT_TAGS = "clippings";
+async function createNote() {
+  const data = await chrome.storage.sync.get(["defaultTags", "defaultFolder"]);
 
-  chrome.storage.sync.get(["defaultFolder", "defaultTags"], (data) => {
-    if (data.defaultFolder) DEFAULT_FOLDER = data.defaultFolder;
-    if (data.defaultTags) DEFAULT_TAGS = data.defaultTags;
-  });
+  const folder = data.defaultFolder || DEFAULT_FOLDER;
+  const tags = [...DEFAULT_TAGS, data.defaultTags];
 
   const vaultName = DEFAULT_VAULT
     ? "&vault=" + encodeURIComponent(`${DEFAULT_VAULT}`)
@@ -73,7 +77,7 @@ function createNote() {
       const keywords = content.split(",");
       keywords.forEach((keyword) => {
         const tag = " " + keyword.split(" ").join("");
-        DEFAULT_TAGS += tag;
+        tags.push(tag);
       });
     }
   }
@@ -109,7 +113,7 @@ function createNote() {
     today +
     "\n" +
     "tags:      [" +
-    DEFAULT_TAGS +
+    tags.join(",") +
     "]\n" +
     "---\n\n" +
     markdownBody;
@@ -117,13 +121,13 @@ function createNote() {
   document.location.href =
     "obsidian://new?" +
     "file=" +
-    encodeURIComponent(DEFAULT_FOLDER + fileName) +
+    encodeURIComponent(folder + fileName) +
     "&content=" +
     encodeURIComponent(fileContent) +
     vaultName;
 }
 
-chrome.runtime.onMessage.addListener(function (request) {
+chrome.runtime.onMessage.addListener((request) => {
   if (request.message === "clicked_context_menu") {
     createNote();
   }
