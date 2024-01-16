@@ -1,34 +1,32 @@
 import { Readability } from "@mozilla/readability";
 import TurndownService from "turndown";
 
+const DEFAULT_VAULT = "";
 const DEFAULT_FOLDER = "Encounters/";
-const DEFAULT_TAGS = "clippings";
+const DEFAULT_TAGS = ["clippings"];
 
-function getTagsFromMeta(): string {
-  const metaElement = document.querySelector<HTMLMetaElement>(
-    'meta[name="keywords" i]'
-  );
-  let tags = DEFAULT_TAGS;
+function getFileName(title: string) {
+  const isWindows = window.navigator.userAgent.toLowerCase().includes("win");
 
-  if (metaElement) {
-    const content = metaElement.getAttribute("content");
-    if (content) {
-      const keywords = content
-        .split(",")
-        .map((keyword) => keyword.trim().replace(/\s+/g, ""));
-      tags += " " + keywords.join(" ");
-    }
+  // Windows: \ / : * ? " < > |
+  // Other OS: \ / :
+  const invalidChars = isWindows ? /[\\/:*?"<>|]/g : /[\\/:]/g;
+  const fileName = title.replace(invalidChars, "-");
+
+  // Limit the file name to 100 characters
+  if (fileName.length > 100) {
+    return fileName.substring(0, 100);
   }
 
-  return tags;
+  return fileName;
 }
 
-function getSelectionHtml(): string {
+function getSelectionHtml() {
   let html = "";
   const sel = window.getSelection();
   if (sel && sel.rangeCount) {
-    const container = document.createElement("div");
-    for (let i = 0; i < sel.rangeCount; ++i) {
+    let container = document.createElement("div");
+    for (let i = 0, len = sel.rangeCount; i < len; ++i) {
       container.appendChild(sel.getRangeAt(i).cloneContents());
     }
     html = container.innerHTML;
@@ -36,36 +34,61 @@ function getSelectionHtml(): string {
   return html;
 }
 
-function getFileName(fileName: string): string {
-  const isWindows = window.navigator.userAgent.toLowerCase().includes("win");
-  const invalidChars = isWindows ? /[:/\\?%*|"<>]/g : /[:/\\|]/g;
-
-  return fileName.replace(":", "").replace(invalidChars, "-");
-}
-
-function convertDate(date: Date): string {
+function getToday() {
+  const date = new Date();
   const yyyy = date.getFullYear().toString();
-  const mm = (date.getMonth() + 1).toString().padStart(2, "0");
-  const dd = date.getDate().toString().padStart(2, "0");
-  return `${yyyy}-${mm}-${dd}`;
+  const mm = (date.getMonth() + 1).toString();
+  const dd = date.getDate().toString();
+  const mmChars = mm.split("");
+  const ddChars = dd.split("");
+
+  return (
+    yyyy +
+    "-" +
+    (mmChars[1] ? mm : "0" + mmChars[0]) +
+    "-" +
+    (ddChars[1] ? dd : "0" + ddChars[0])
+  );
 }
 
-function createNote() {
-  const folder = DEFAULT_FOLDER;
-  const tags = getTagsFromMeta();
+async function createNote() {
+  const data = await chrome.storage.sync.get(["defaultTags", "defaultFolder"]);
+
+  const folder = data.defaultFolder || DEFAULT_FOLDER;
+  const tags = [...DEFAULT_TAGS, data.defaultTags];
+
+  const vaultName = DEFAULT_VAULT
+    ? "&vault=" + encodeURIComponent(`${DEFAULT_VAULT}`)
+    : "";
+
   const selection = getSelectionHtml();
-  const clonedDoc = document.cloneNode(true) as Document;
+
+  const clonedDoc = document.cloneNode(true) as Document; // ? Have to do this, structuredClone doesn't work on DOM elements.
   const readable = new Readability(clonedDoc).parse();
+
+  /* parse and lightly clean the site's meta keywords content into tags, if present */
+  const metaElement = document.querySelector<HTMLMetaElement>(
+    'meta[name="keywords" i]'
+  );
+
+  if (metaElement) {
+    const content = metaElement.getAttribute("content");
+    if (content) {
+      const keywords = content.split(",");
+      keywords.forEach((keyword) => {
+        const tag = " " + keyword.split(" ").join("");
+        tags.push(tag);
+      });
+    }
+  }
 
   if (!readable) {
     console.error("Failed to parse the document with Readability.");
     return;
   }
 
-  const { title, byline, content } = readable;
-  const fileName = getFileName(title);
-  const markdownify = selection || content;
-  const vaultName = "&vault=" + encodeURIComponent("");
+  const fileName = getFileName(readable.title);
+
   const turndownService = new TurndownService({
     headingStyle: "atx",
     hr: "~~~",
@@ -74,24 +97,35 @@ function createNote() {
     emDelimiter: "*",
   });
 
+  const markdownify = selection ? selection : readable.content;
   const markdownBody = turndownService.turndown(markdownify);
-  const today = convertDate(new Date());
+  const today = getToday();
 
-  const fileContent = `
----
-author:    ${byline}
-title:     [${title}]
-source:    ${document.URL}
-clipped:   ${today}
-tags:      [${tags}]
----
+  /* YAML front matter as tags render cleaner with special chars  */
+  const fileContent =
+    "---\n" +
+    "author:    " +
+    readable.byline +
+    "\n" +
+    "source:    " +
+    document.URL +
+    "\n" +
+    "clipped:   " +
+    today +
+    "\n" +
+    "tags:      [" +
+    tags.join(",") +
+    "]\n" +
+    "---\n\n" +
+    markdownBody;
 
-${markdownBody}
-`;
-
-  document.location.href = `obsidian://new?file=${encodeURIComponent(
-    folder + fileName
-  )}&content=${encodeURIComponent(fileContent)}${vaultName}`;
+  document.location.href =
+    "obsidian://new?" +
+    "file=" +
+    encodeURIComponent(folder + fileName) +
+    "&content=" +
+    encodeURIComponent(fileContent) +
+    vaultName;
 }
 
 chrome.runtime.onMessage.addListener((request) => {
