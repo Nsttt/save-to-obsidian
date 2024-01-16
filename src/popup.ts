@@ -9,9 +9,12 @@ if (saveButtonElement) {
     // @ts-ignore
     const defaultTags = tagsElement ? tagsElement.value : "";
 
-    chrome.storage.sync.set({ defaultFolder, defaultTags }, function () {
-      console.log("Settings saved");
-    });
+    chrome.storage.sync.set(
+      { defaultFolder: defaultFolder, defaultTags: defaultTags },
+      function () {
+        console.log("Settings saved");
+      }
+    );
   });
 } else {
   console.error("Save button element not found");
