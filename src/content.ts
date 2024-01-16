@@ -34,7 +34,8 @@ function getSelectionHtml() {
   return html;
 }
 
-function convertDate(date: Date) {
+function getToday() {
+  const date = new Date();
   const yyyy = date.getFullYear().toString();
   const mm = (date.getMonth() + 1).toString();
   const dd = date.getDate().toString();
@@ -61,7 +62,6 @@ async function createNote() {
     : "";
 
   const selection = getSelectionHtml();
-  const today = convertDate(new Date());
 
   const clonedDoc = document.cloneNode(true) as Document; // ? Have to do this, structuredClone doesn't work on DOM elements.
   const readable = new Readability(clonedDoc).parse();
@@ -99,6 +99,7 @@ async function createNote() {
 
   const markdownify = selection ? selection : readable.content;
   const markdownBody = turndownService.turndown(markdownify);
+  const today = getToday();
 
   /* YAML front matter as tags render cleaner with special chars  */
   const fileContent =
