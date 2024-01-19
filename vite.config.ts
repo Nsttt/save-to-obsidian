@@ -1,3 +1,4 @@
+import path from "path";
 import { defineConfig } from "vite";
 
 const fetchVersion = () => {
@@ -14,6 +15,11 @@ const fetchVersion = () => {
 
 export default defineConfig({
   plugins: [fetchVersion()],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./"),
+    },
+  },
   build: {
     outDir: "dist",
     emptyOutDir: false,

@@ -82,8 +82,13 @@
   "dependencies": {
     "@mozilla/readability": "^0.4.4",
     "@tehshrike/readability": "^0.2.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "lucide-react": "^0.312.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "tailwind-merge": "^2.2.0",
+    "tailwindcss-animate": "^1.0.7",
     "turndown": "^7.1.2",
     "webdriverio": "^8.27.2"
   }

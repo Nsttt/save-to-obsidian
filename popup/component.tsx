@@ -10,24 +10,24 @@ export default () => {
   }
 
   return (
-    <div className="flex flex-col gap-4 p-4 shadow-sm bg-gradient-to-r from-purple-500 to-pink-500 w-96">
-      <h1>Settings</h1>
+    <div className="flex flex-col gap-4 p-4 shadow-md bg-gray-800 w-96 border border-gray-600 rounded-md">
+      <h1 className="text-white text-xl">Settings</h1>
       <input
-        className="w-48"
+        className="w-full p-2 bg-gray-700 text-white border border-gray-500 rounded-md"
         type="text"
         placeholder="Folder"
         value={folder}
         onChange={(e) => setFolder(e.target.value)}
       />
       <input
-        className="w-48"
+        className="w-full p-2 bg-gray-700 text-white border border-gray-500 rounded-md"
         type="text"
         placeholder="Tags"
         value={tags.toString()}
         onChange={(e) => setTags(e.target.value.split(","))}
       />
       <button
-        className="px-4 py-2 font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm disabled:opacity-75 w-48"
+        className="px-4 py-2 font-semibold text-sm bg-blue-600 text-white rounded-md shadow-sm disabled:opacity-75 w-full hover:bg-blue-700 transition-colors"
         onClick={handleOnClick}
       >
         Save
