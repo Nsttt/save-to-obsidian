@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// @ts-check
 
 import path from "node:path";
 import url from "node:url";
@@ -42,7 +43,7 @@ async function startBrowser(browserName) {
     await browser.installAddOn(extension.toString("base64"), true);
   }
 
-  await browser.url("https://github.com/stateful/web-extension-starter-kit");
+  await browser.url("https://github.com/nsttt/save-to-obsidian");
 }
 
 const browserName = process.argv.slice(2).pop() || "chrome";
