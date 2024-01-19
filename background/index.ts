@@ -2,10 +2,17 @@ import browser from "webextension-polyfill";
 
 // This will create a context menu item
 browser.runtime.onInstalled.addListener(() => {
-  browser.contextMenus.create({
-    id: "saveText",
-    title: "Save to Obsidian",
-  });
+  browser.contextMenus.create(
+    {
+      id: "saveText",
+      title: "Save to Obsidian",
+    },
+    () => {
+      if (browser.runtime.lastError) {
+        console.log(browser.runtime.lastError.message);
+      }
+    }
+  );
 });
 
 browser.contextMenus.onClicked.addListener((info, tab) => {
