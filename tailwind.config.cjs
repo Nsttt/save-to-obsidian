@@ -3,8 +3,9 @@ module.exports = {
   important: "#extension-root",
   darkMode: ["class"],
   content: [
-    "./content-script/**/*.{js,ts,jsx,tsx}",
-    "./popup/**/*.{js,ts,jsx,tsx}",
+    "./content-script/**/*.{js,ts,jsx,tsx,html}",
+    "./popup/**/*.{js,ts,jsx,tsx,html}",
+    "./components/**/*.{js,ts,jsx,tsx}",
   ],
   prefix: "",
   theme: {
