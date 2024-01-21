@@ -35,5 +35,10 @@
     "16": "icon-16x16.png",
     "48": "icon-48x48.png",
     "128": "icon-128x128.png"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "save-to-obsidian@nstlopez.com"
+    }
   }
 }
