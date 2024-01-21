@@ -80,7 +80,7 @@ jobs:
             ./*.zip
       - name: Submit to Mozilla
         working-directory: ./dist
-        run: npx web-ext-submit@7
+        run: npx web-ext sign --use-submission-api --channel listed
         env:
           WEB_EXT_API_KEY: ${{ secrets.WEB_EXT_API_KEY }}
           WEB_EXT_API_SECRET: ${{ secrets.WEB_EXT_API_SECRET }}
