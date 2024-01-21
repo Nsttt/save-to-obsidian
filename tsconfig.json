@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "types": ["node", "@wdio/globals/types"],
+    "types": ["node", "@wdio/globals/types", "vite/client"],
     "useDefineForClassFields": false,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": true,
