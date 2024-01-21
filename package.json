@@ -18,7 +18,7 @@
     "bundle:clean": "run-s clean",
     "bundle:firefox": "run-s bundle:firefox:*",
     "bundle:firefox:build": "run-s build:firefox",
-    "bundle:firefox:zip": "web-ext build -s dist/ -a . && mv ./my_web_extension-$npm_package_version.zip ./web-extension-firefox-v$npm_package_version.xpi",
+    "bundle:firefox:zip": "web-ext build -s dist/ -a . && mv ./save_to_obsidian-$npm_package_version.zip ./save_to_obsidian-firefox-v$npm_package_version.xpi",
     "bundle:chrome": "run-s bundle:chrome:*",
     "bundle:chrome:build": "run-s build:chrome",
     "bundle:chrome:zip": "zip -r ./web-extension-chrome-v$npm_package_version.zip ./dist",
