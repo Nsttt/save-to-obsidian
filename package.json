@@ -1,5 +1,5 @@
 {
-  "name": "obsidian-clipper",
+  "name": "save-to-obsidian",
   "version": "1.0.0",
   "description": "A web extension to save clippings to your Obsidian Vault",
   "author": "Nestor Lopez <nestor@nstlopez.com>",
@@ -51,6 +51,7 @@
   },
   "devDependencies": {
     "@testing-library/react": "^14.1.2",
+    "@types/jest": "^29.5.11",
     "@types/node": "^20.11.4",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
