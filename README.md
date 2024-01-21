@@ -1,77 +1,97 @@
-# My Web Extension
+# Save to Obsidian - Web Extension
 
-> This is a starter kit for building cross platform browser extensions. You can use it as a template for your project. It comes with a [Vite](https://vitejs.dev/) + [TailwindCSS](https://tailwindcss.com/) + [WebdriverIO](https://webdriver.io) setup for building and testing extension popup modals, content and background scripts. Read more about building cross platform browser extensions in our [corresponding blog post](https://stateful.com/blog/building-cross-browser-web-extensions).
+Save to Obsidian is a powerful browser extension that allows users to effortlessly scrape content from webpages and create structured notes in their Obsidian vaults. This extension is now available across multiple browsers, including Chrome and Firefox. with a modern development setup featuring Vite, TailwindCSS, and WebdriverIO.
 
-A browser web extension that works on Chrome, Firefox and Safari. Download the extension on the marketplaces:
+## Features
 
-- Chrome:: https://chrome.google.com/webstore/detail/my-web-extension/lnihnbkolojkaehnkdmpliededkfebkk
-- Firefox: https://addons.mozilla.org/en-GB/firefox/addon/my-web-extension/
-- Safari: _(not yet supported, see [`stateful/web-extension-starter-kit#1`](https://github.com/stateful/web-extension-starter-kit/issues/1))_
+- **Quick Note Creation**: Easily transform the content of any webpage into a structured Obsidian note with just a click.
+- **Metadata Extraction**: Automatically captures essential metadata like title, byline, and date.
+- **Tags Handling**: Auto-fetches site meta keywords for easy tagging in Obsidian.
+- **Markdown Support**: Converts content to Markdown format for seamless integration with Obsidian.
+- **File Naming**: Ensures clean, compliant file naming for system compatibility.
 
-## Development
+## Installation
+
+The extension can be downloaded from:
+
+- Chrome: [Chrome Web Store](https://chrome.google.com/webstore/detail/save-to-obsidian/lnihnbkolojkaehnkdmpliededkfebkk)
+- Firefox: [Firefox Add-ons](https://addons.mozilla.org/en-GB/firefox/addon/save-to-obsidian/)
 
 ### Setup
 
-Install dependencies via:
+1. Clone the repository:
 
-```sh
-pnpm install
+   ```bash
+   git clone https://github.com/nsttt/save-to-obsidian.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd save-to-obsidian
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   pnpm install
+   ```
+
+### Build and Run
+
+- To build the extension, run:
+
+  ```bash
+  pnpm build
+  ```
+
+- Start a browser with the extension installed:
+
+  ```bash
+  # For Chrome
+  pnpm start:chrome
+  ```
+
+  ```bash
+  # For Firefox
+  pnpm start:firefox
+  ```
+
+### Usage
+
+1. Enable developer mode in your browser.
+2. Load the unpacked extension.
+3. Navigate to a webpage and use the context menu to activate "Save to Obsidian".
+4. The content will be saved as a markdown note in your Obsidian vault.
+
+## Development
+
+This project is bundled with `Vite` for TypeScript development. Run a development build using:
+
+```bash
+pnpm dev
 ```
 
-then start a browser with the web extension installed:
+## Testing
 
-```sh
-# run Chrome
-pnpm start:chrome
-```
+- Component tests:
 
-or
+  ```bash
+  pnpm test:component
+  ```
 
-```sh
-# run Firefox
-pnpm start:firefox
-```
+- E2E tests:
 
-This will build the extension and start a browser with it being loaded in it. After making changes, Vite automatically will re-compile the files and you can reload the extension to apply them in the browser.
+  ```bash
+  pnpm test:e2e
+  ```
 
-### Build
+## Contributing
 
-Bundle the extension by running:
+Contributions are welcome! For major changes, please open an issue first to discuss your ideas.
 
-```sh
-pnpm build
-```
+## Acknowledgements
 
-This script will bundle the extension as `web-extension-chrome-vX.X.X.crx` and `web-extension-firefox-vX.X.X.zip`. The generated files are in `dist/`. You can also grab a version from the [latest test](https://github.com/stateful/web-extension-starter-kit/actions/workflows/test.yml) run on the `main` branch.
-
-#### Load in Firefox
-
-To load the extension in Firefox go to `about:debugging#/runtime/this-firefox` or `Firefox > Preferences > Extensions & Themes > Debug Add-ons > Load Temporary Add-on...`. Here locate the `dist/` directory and open `manifestv2.json`
-
-#### Load in Chrome
-
-To load the extensions in Google Chrome go to `chrome://extensions/` and click `Load unpacked`. Locate the dist directory and select `manifest.json`.
-
-### Test
-
-This project tests the extension files using component tests and the extension integration via e2e test with WebdriverIO.
-
-Run unit/component tests:
-
-```sh
-pnpm test:component
-```
-
-Run e2e tests:
-
-```sh
-pnpm test:e2e
-```
-
-## Files:
-
-- content-script - UI files
-- background.ts - Background script/Service worker
-- index.html - popup UI
-
-If you have any questions feel free to open an issue.
+- Inspired by [Obsidian](https://obsidian.md/) and the [Obsidian Web Clipper by Stephango](https://stephango.com/obsidian-web-clipper).
+- Special thanks to all contributors and users!
+- Built using the [Stateful Web Extension Starter Kit](https://stateful.com/blog/building-cross-browser-web-extensions).
