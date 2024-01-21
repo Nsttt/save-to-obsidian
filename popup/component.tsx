@@ -41,11 +41,11 @@ export default function Popup() {
     setTags(tags.filter((tag) => tag !== tagToRemove));
   };
 
-  function handleOnClick() {
+  const handleOnClick = () => {
     browser.storage.sync.set({ defaultFolder: folder, defaultTags: tags });
-  }
+  };
 
-  function recoverDefaults() {
+  const recoverDefaults = () => {
     browser.storage.sync.get(["defaultFolder", "defaultTags"]).then((res) => {
       if (res.defaultTags) {
         setTags(res.defaultTags);
@@ -54,7 +54,7 @@ export default function Popup() {
         setFolder(res.defaultFolder);
       }
     });
-  }
+  };
 
   useEffect(() => {
     recoverDefaults();
