@@ -23,6 +23,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["background", "content-script", "popup", "components"],
+  "include": ["background", "content-script", "popup", "components", "lib"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
