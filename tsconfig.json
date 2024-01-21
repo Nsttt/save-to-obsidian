@@ -1,12 +1,28 @@
 {
   "compilerOptions": {
-    "strict": true,
-    "module": "commonjs",
     "target": "ESNext",
-    "esModuleInterop": true,
-    "sourceMap": true,
-    "outDir": "dist/js",
-    "noEmitOnError": true,
-    "typeRoots": ["node_modules/@types"]
-  }
+    "types": ["node", "@wdio/globals/types", "vite/client"],
+    "useDefineForClassFields": false,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": true,
+    "checkJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": ["background", "content-script", "popup", "components", "lib"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
