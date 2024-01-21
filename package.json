@@ -1,6 +1,6 @@
 {
   "name": "save-to-obsidian",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A web extension to save clippings to your Obsidian Vault",
   "author": "Nestor Lopez <nestor@nstlopez.com>",
   "license": "MIT",
