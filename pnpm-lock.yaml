@@ -84,7 +84,7 @@ devDependencies:
     version: 8.27.2(typescript@5.3.3)
   '@wdio/firefox-profile-service':
     specifier: ^8.27.2
-    version: 8.27.2
+    version: 8.29.1
   '@wdio/globals':
     specifier: ^8.27.2
     version: 8.27.2(typescript@5.3.3)
@@ -2393,11 +2393,11 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@wdio/firefox-profile-service@8.27.2:
-    resolution: {integrity: sha512-Img0U40LkgmLDLy6wiQNx1LqcjFcJbT8jpSq8gdzsjenewuPazeQzVq4jeGcFM9PTp3/JPLjvR9g/OSnJWjziw==}
+  /@wdio/firefox-profile-service@8.29.1:
+    resolution: {integrity: sha512-QBYoyMqxwbvA6/pd2qYupV59JXO/aFr9sFnpGllnb5Gf7bMYb6ElZoTPZKSzhhHbD6cmh4CFe9IVTLYEE8xnDg==}
     engines: {node: ^16.13 || >=18}
     dependencies:
-      '@wdio/types': 8.27.2
+      '@wdio/types': 8.29.1
       firefox-profile: 4.5.0
     dev: true
 
@@ -2520,6 +2520,13 @@ packages:
     engines: {node: ^16.13 || >=18}
     dependencies:
       '@types/node': 20.11.4
+
+  /@wdio/types@8.29.1:
+    resolution: {integrity: sha512-rZYzu+sK8zY1PjCEWxNu4ELJPYKDZRn7HFcYNgR122ylHygfldwkb5TioI6Pn311hQH/S+663KEeoq//Jb0f8A==}
+    engines: {node: ^16.13 || >=18}
+    dependencies:
+      '@types/node': 20.11.4
+    dev: true
 
   /@wdio/utils@8.27.2:
     resolution: {integrity: sha512-jWxUhGjlZ4L3uOsP96oLKWjkITpoH/KPTtKzU7xdoVGhd1LXK4d/Fr8cTFTNkDBXM7yuM7C+EMmQ8HJHR55KTA==}
@@ -6233,6 +6240,7 @@ packages:
 
   /lodash.isequal@4.5.0:
     resolution: {integrity: sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==}
+    requiresBuild: true
     dev: true
 
   /lodash.isplainobject@4.0.6:
@@ -6284,10 +6292,12 @@ packages:
 
   /loglevel-plugin-prefix@0.8.4:
     resolution: {integrity: sha512-WpG9CcFAOjz/FtNht+QJeGpvVl/cdR6P0z6OcXSkr8wFJOsV2GRj2j10JLfjuA4aYkcKCNIEqRGCyTife9R8/g==}
+    requiresBuild: true
 
   /loglevel@1.8.1:
     resolution: {integrity: sha512-tCRIJM51SHjAayKwC+QAg8hT8vg6z7GSgLJKGvzuPb1Wc+hLzqtuVLxp6/HzSPOozuK+8ErAhy7U/sVzw8Dgfg==}
     engines: {node: '>= 0.6.0'}
+    requiresBuild: true
 
   /loose-envify@1.4.0:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
