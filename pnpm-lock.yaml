@@ -96,7 +96,7 @@ devDependencies:
     version: 8.27.2
   '@wdio/types':
     specifier: ^8.27.2
-    version: 8.27.2
+    version: 8.29.1
   autoprefixer:
     specifier: ^10.4.16
     version: 10.4.16(postcss@8.4.33)
@@ -2520,6 +2520,13 @@ packages:
     engines: {node: ^16.13 || >=18}
     dependencies:
       '@types/node': 20.11.4
+
+  /@wdio/types@8.29.1:
+    resolution: {integrity: sha512-rZYzu+sK8zY1PjCEWxNu4ELJPYKDZRn7HFcYNgR122ylHygfldwkb5TioI6Pn311hQH/S+663KEeoq//Jb0f8A==}
+    engines: {node: ^16.13 || >=18}
+    dependencies:
+      '@types/node': 20.11.4
+    dev: true
 
   /@wdio/utils@8.27.2:
     resolution: {integrity: sha512-jWxUhGjlZ4L3uOsP96oLKWjkITpoH/KPTtKzU7xdoVGhd1LXK4d/Fr8cTFTNkDBXM7yuM7C+EMmQ8HJHR55KTA==}
@@ -6233,6 +6240,7 @@ packages:
 
   /lodash.isequal@4.5.0:
     resolution: {integrity: sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==}
+    requiresBuild: true
     dev: true
 
   /lodash.isplainobject@4.0.6:
