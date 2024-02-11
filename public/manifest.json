@@ -4,7 +4,7 @@
   "author": "nestor@nstlopez.xom",
   "description": "Save stuff to Obsidian",
   "homepage_url": "https://github.com/nsttt/save-to-obsidian",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "permissions": [
     "activeTab",
     "storage",
