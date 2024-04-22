@@ -84,7 +84,7 @@ devDependencies:
     version: 8.27.2(typescript@5.3.3)
   '@wdio/firefox-profile-service':
     specifier: ^8.27.2
-    version: 8.27.2
+    version: 8.36.1
   '@wdio/globals':
     specifier: ^8.27.2
     version: 8.27.2(typescript@5.3.3)
@@ -2393,11 +2393,11 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@wdio/firefox-profile-service@8.27.2:
-    resolution: {integrity: sha512-Img0U40LkgmLDLy6wiQNx1LqcjFcJbT8jpSq8gdzsjenewuPazeQzVq4jeGcFM9PTp3/JPLjvR9g/OSnJWjziw==}
+  /@wdio/firefox-profile-service@8.36.1:
+    resolution: {integrity: sha512-z/LQVGthxGwoYJN0WLU8z0gobF9dmPi+JBsl3m2d4CBXIlsYyd6hiuDmIv2Jta0UqFFILizA8U3/GXvA0CRErg==}
     engines: {node: ^16.13 || >=18}
     dependencies:
-      '@wdio/types': 8.27.2
+      '@wdio/types': 8.36.1
       firefox-profile: 4.5.0
     dev: true
 
@@ -2520,6 +2520,13 @@ packages:
     engines: {node: ^16.13 || >=18}
     dependencies:
       '@types/node': 20.11.4
+
+  /@wdio/types@8.36.1:
+    resolution: {integrity: sha512-kKtyJbypasKo/VQuJ6dTQQwFtHE9qoygjoCZjrQCLGraRSjOEiqZHPR0497wbeCvcgHIYyImbmcylqZNGUE0CQ==}
+    engines: {node: ^16.13 || >=18}
+    dependencies:
+      '@types/node': 20.11.4
+    dev: true
 
   /@wdio/utils@8.27.2:
     resolution: {integrity: sha512-jWxUhGjlZ4L3uOsP96oLKWjkITpoH/KPTtKzU7xdoVGhd1LXK4d/Fr8cTFTNkDBXM7yuM7C+EMmQ8HJHR55KTA==}
@@ -6233,6 +6240,7 @@ packages:
 
   /lodash.isequal@4.5.0:
     resolution: {integrity: sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==}
+    requiresBuild: true
     dev: true
 
   /lodash.isplainobject@4.0.6:
