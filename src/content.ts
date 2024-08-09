@@ -1,5 +1,6 @@
 import { Readability } from "@mozilla/readability";
 import TurndownService from "turndown";
+import browser from "webextension-polyfill";
 
 const DEFAULT_VAULT = "";
 const DEFAULT_FOLDER = "Encounters/";
@@ -128,7 +129,7 @@ async function createNote() {
     vaultName;
 }
 
-chrome.runtime.onMessage.addListener((request) => {
+browser.runtime.onMessage.addListener((request) => {
   if (request.message === "clicked_context_menu") {
     createNote();
   }

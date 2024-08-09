@@ -4,16 +4,21 @@
   "description": "",
   "scripts": {
     "dev": "tsup --watch --config tsup.config.ts",
-    "build": "tsup --config tsup.config.ts"
+    "build": "tsup --config tsup.config.ts",
+    "start:firefox": "web-ext run --source-dir ./dist/"
   },
   "keywords": [],
   "author": "Néstor López",
   "license": "MIT",
   "devDependencies": {
     "@types/chrome": "^0.0.245",
+    "@types/firefox": "^0.0.34",
     "@types/turndown": "^5.0.2",
+    "@types/webextension-polyfill": "^0.10.7",
     "tsup": "^7.2.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "web-ext": "^8.2.0",
+    "webextension-polyfill": "^0.12.0"
   },
   "dependencies": {
     "@mozilla/readability": "^0.4.4",
