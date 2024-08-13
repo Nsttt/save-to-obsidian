@@ -1,6 +1,13 @@
 import { defineConfig } from "tsup";
 
 export default defineConfig({
+  platform: "browser",
+  format: "iife",
+  outExtension: ({ format }) => {
+    return {
+      js: ".js",
+    };
+  },
   entry: ["src/*"],
   dts: {
     resolve: true,
@@ -8,11 +15,12 @@ export default defineConfig({
   minify: true,
   clean: true,
   sourcemap: true,
-  target: "es2019",
+  target: ["firefox129", "chrome127"],
+  injectStyle: true,
   bundle: true,
   skipNodeModulesBundle: true,
   splitting: true,
   outDir: "dist",
   publicDir: "public",
-  noExternal: ["@mozilla/readability", "turndown"],
+  noExternal: ["webextension-polyfill", "@mozilla/readability", "turndown"],
 });

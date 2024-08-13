@@ -53,7 +53,7 @@ function getToday() {
 }
 
 async function createNote() {
-  const data = await chrome.storage.sync.get(["defaultTags", "defaultFolder"]);
+  const data = await browser.storage.sync.get(["defaultTags", "defaultFolder"]);
 
   const folder = data.defaultFolder || DEFAULT_FOLDER;
   const tags = [...DEFAULT_TAGS, data.defaultTags];
