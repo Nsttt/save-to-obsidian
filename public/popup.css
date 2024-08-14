@@ -1,29 +1,29 @@
 :root {
-  --background: hsl(210, 100%, 98%);
-  --foreground: hsl(339, 20%, 20%);
-  --primary: hsl(308, 56%, 85%);
-  --primary-foreground: hsl(210, 22%, 22%);
-  --secondary: hsl(196, 75%, 88%);
-  --secondary-foreground: hsl(210, 22%, 22%);
-  --accent: hsl(211, 86%, 70%);
-  --accent-foreground: hsl(210, 22%, 22%);
-  --destructive: hsl(0, 93%, 73%);
-  --destructive-foreground: hsl(210, 22%, 22%);
-  --muted: hsl(210, 100%, 96%);
-  --muted-foreground: hsl(210, 22%, 44%);
-  --card: hsl(210, 100%, 98%);
-  --card-foreground: hsl(210, 22%, 22%);
-  --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(341, 20%, 22%);
-  --border: hsl(210, 40%, 70%);
-  --input: hsl(210, 40%, 90%);
-  --ring: hsl(210, 40%, 60%);
-  --chart-1: hsl(308, 56%, 85%);
-  --chart-2: hsl(211, 96%, 70%);
-  --chart-3: hsl(45, 100%, 80%);
-  --chart-4: hsl(180, 60%, 85%);
-  --chart-5: hsl(120, 50%, 80%);
-  --radius: 1rem;
+  --background: hsl(0, 0%, 12%);
+  --foreground: hsl(0, 0%, 90%);
+  --primary: hsl(283, 50%, 40%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(204, 86%, 53%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --accent: hsl(38, 95%, 60%);
+  --accent-foreground: hsl(0, 0%, 20%);
+  --destructive: hsl(0, 70%, 50%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --muted: hsl(230, 15%, 25%);
+  --muted-foreground: hsl(0, 0%, 60%);
+  --card: hsl(230, 15%, 22%);
+  --card-foreground: hsl(0, 0%, 90%);
+  --popover: hsl(230, 15%, 20%);
+  --popover-foreground: hsl(0, 0%, 90%);
+  --border: hsl(230, 15%, 30%);
+  --input: hsl(230, 15%, 28%);
+  --ring: hsl(204, 86%, 53%);
+  --chart-1: hsl(283, 50%, 40%);
+  --chart-2: hsl(204, 86%, 53%);
+  --chart-3: hsl(38, 95%, 60%);
+  --chart-4: hsl(120, 50%, 50%);
+  --chart-5: hsl(38, 95%, 40%);
+  --radius: 0.5rem;
 }
 
 body {
@@ -38,7 +38,7 @@ body {
   color: var(--card-foreground);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 28rem;
+  max-width: 20rem;
 }
 
 .card-header {
@@ -85,7 +85,8 @@ body {
 
 .form-group input {
   height: 2.5rem;
-  width: 100%;
+  width: 90%;
+  max-width: 90%;
   border-radius: 0.375rem;
   border: 1px solid var(--input);
   background-color: var(--background);
