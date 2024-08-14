@@ -3,7 +3,7 @@ import TurndownService from "turndown";
 import browser from "webextension-polyfill";
 
 const DEFAULT_VAULT = "";
-const DEFAULT_FOLDER = "Encounters/";
+const DEFAULT_FOLDER = "/";
 const DEFAULT_TAGS = ["clippings"];
 
 function getFileName(title: string) {
