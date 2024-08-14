@@ -1,14 +1,33 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extension Settings</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
 
 <body>
-    <form id="settings-form">
-        <label for="folder">Default Folder:</label>
-        <input type="text" id="folder" name="folder" required><br><br>
-        <label for="tags">Default Tags:</label>
-        <input type="text" id="tags" name="tags" required><br><br>
-        <button type="button" id="saveButton">Save</button>
-    </form>
+    <div class="card" data-v0-t="card">
+        <div class="card-header">
+            <h3>Extension Settings</h3>
+            <p>Configure your default folder and tags.</p>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="folder">Default Folder</label>
+                <input id="folder" placeholder="Enter default folder" />
+            </div>
+            <div class="form-group">
+                <label for="tags">Default Tags</label>
+                <input id="tags" placeholder="Enter default tags" />
+            </div>
+            <div class="form-group">
+                <button class="btn-save" type="button">Save</button>
+            </div>
+        </div>
+    </div>
     <script src="popup.js"></script>
 </body>
 
