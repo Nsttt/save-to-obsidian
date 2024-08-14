@@ -1,14 +1,16 @@
 import browser from "webextension-polyfill";
 
-const folderElement = document.getElementById("folder");
-const tagsElement = document.getElementById("tags");
-const saveButtonElement = document.getElementById("saveButton");
+const folderElement = document.getElementById(
+  "folder"
+) as HTMLInputElement | null;
+const tagsElement = document.getElementById("tags") as HTMLInputElement | null;
+const saveButtonElement = document.getElementById(
+  "saveButton"
+) as HTMLButtonElement | null;
 
 if (saveButtonElement) {
   saveButtonElement.addEventListener("click", () => {
-    // @ts-ignore
     const defaultFolder = folderElement ? folderElement.value : "";
-    // @ts-ignore
     const defaultTags = tagsElement ? tagsElement.value : "";
 
     browser.storage.sync.set({

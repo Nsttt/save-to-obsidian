@@ -25,8 +25,8 @@ function getFileName(title: string) {
 function getSelectionHtml() {
   let html = "";
   const sel = window.getSelection();
-  if (sel && sel.rangeCount) {
-    let container = document.createElement("div");
+  if (sel?.rangeCount) {
+    const container = document.createElement("div");
     for (let i = 0, len = sel.rangeCount; i < len; ++i) {
       container.appendChild(sel.getRangeAt(i).cloneContents());
     }
@@ -43,13 +43,9 @@ function getToday() {
   const mmChars = mm.split("");
   const ddChars = dd.split("");
 
-  return (
-    yyyy +
-    "-" +
-    (mmChars[1] ? mm : "0" + mmChars[0]) +
-    "-" +
-    (ddChars[1] ? dd : "0" + ddChars[0])
-  );
+  return `${yyyy}-${mmChars[1] ? mm : `0${mmChars[0]}`}-${
+    ddChars[1] ? dd : `0${ddChars[0]}`
+  }`;
 }
 
 async function createNote() {
@@ -59,7 +55,7 @@ async function createNote() {
   const tags = [...DEFAULT_TAGS, data.defaultTags];
 
   const vaultName = DEFAULT_VAULT
-    ? "&vault=" + encodeURIComponent(`${DEFAULT_VAULT}`)
+    ? `&vault=${encodeURIComponent(`${DEFAULT_VAULT}`)}`
     : "";
 
   const selection = getSelectionHtml();
@@ -76,10 +72,10 @@ async function createNote() {
     const content = metaElement.getAttribute("content");
     if (content) {
       const keywords = content.split(",");
-      keywords.forEach((keyword) => {
-        const tag = " " + keyword.split(" ").join("");
+      for (const keyword of keywords) {
+        const tag = ` ${keyword.trim()}`;
         tags.push(tag);
-      });
+      }
     }
   }
 
@@ -104,6 +100,7 @@ async function createNote() {
 
   /* YAML front matter as tags render cleaner with special chars  */
   const fileContent =
+    // biome-ignore lint/style/useTemplate: <explanation>
     "---\n" +
     "author:    " +
     readable.byline +
@@ -120,13 +117,9 @@ async function createNote() {
     "---\n\n" +
     markdownBody;
 
-  document.location.href =
-    "obsidian://new?" +
-    "file=" +
-    encodeURIComponent(folder + fileName) +
-    "&content=" +
-    encodeURIComponent(fileContent) +
-    vaultName;
+  document.location.href = `obsidian://new?file=${encodeURIComponent(
+    folder + fileName
+  )}&content=${encodeURIComponent(fileContent)}${vaultName}`;
 }
 
 browser.runtime.onMessage.addListener((request) => {

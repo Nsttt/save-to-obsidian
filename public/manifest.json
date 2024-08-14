@@ -32,7 +32,7 @@
 	"browser_specific_settings": {
 		"gecko": {
 			"id": "save-to-obsidian@nst.sh",
-			"strict_min_version": "42.0"
+			"strict_min_version": "58.0"
 		}
 	}
 }
